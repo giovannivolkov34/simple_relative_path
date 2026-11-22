@@ -35,3 +35,10 @@ When the start and target are the same directory, the result is `'.'`, not an
 empty string.  That matches the convention used by shells and most path
 libraries, and it keeps the return type a non-empty string for every valid
 input.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
